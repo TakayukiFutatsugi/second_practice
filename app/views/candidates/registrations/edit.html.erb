@@ -1,0 +1,193 @@
+<h2>求職者プロフィール編集 <%= resource_name.to_s.humanize %></h2>
+<form class="ui form">
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "candidates/shared/error_messages", resource: resource %>
+  
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :姓 %>
+        <%= f.text_field :familyName %>
+      </div>
+      <div class="field">
+        <%= f.label :名 %>
+        <%= f.text_field :lastName %>
+      </div>
+    </div>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :セイ %>
+        <%= f.text_field :familyNameDetail %>
+      </div>
+      <div class="field">
+        <%= f.label :メイ %>
+        <%= f.text_field :lastNameDetail %>
+      </div>
+    </div>
+  
+    <div class="field">
+      <%= f.label :性別 %>
+      <%= f.select :gender, Candidate.genders.keys, {} %>
+    </div>
+  
+    <div class="three field">
+      <%= f.label :生年月日 %>
+      <%= f.date_select(:birthdate, start_year: 1970, end_year: Date.today.year) %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :居住地 %>
+      <%= f.select :prefecture, Candidate.prefectures.keys, {} %>
+    </div>
+    
+    <div class="field">
+      <label>学歴1</label><%= f.label :年 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <label>学歴2</label><%= f.label :高校卒業 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <label>学歴3</label><%= f.label :年 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <label>職歴1</label><%= f.label :卒業 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <label>職歴2</label><%= f.label :年 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <label>職歴3</label><%= f.label :卒業 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :資格 %>
+      <%= f.text_field :certification %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :エンジニア志望理由 %>
+      <%= f.text_field :reason %>
+    </div>
+  
+    
+    <div class="field">
+      <%= f.label :学習期間 %>
+      <input type="text" name="first-name" placeholder="First Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :長所 %>
+      <%= f.text_field :strongPoint %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :短所 %>
+      <%= f.text_field :weakPoint %>
+    </div>
+    <div class="field">
+      <%= f.label :エンジニアとしての目標 %>
+      <%= f.text_field :goal %>
+    </div>
+  
+    
+    <div class="field">
+      <%= f.label :学習に使用しているサイト・書籍など %>
+      <%= f.text_field :strongPoint %>
+    </div>
+    <div class="field">
+      <%= f.label :情報収集に使用しているサイト・書籍など %>
+      <%= f.text_field :strongPoint %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :学習した言語 %>
+      <input type="text" name="first-name" placeholder="First Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :学習したフレームワーク %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :ポートフォリオ %>
+      <%= f.text_field :portfolio %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :作ってみたいプロダクト %>
+      <%= f.text_field :product %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :自己紹介 %>
+      <%= f.text_area :introduction %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :希望勤務地 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :希望給与 %>
+      <input type="text" name="first-name" placeholder="First Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :勤務開始可能日 %>
+      <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+    
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+  
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
+</form>
+
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

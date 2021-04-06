@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nemmy</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('favicon.png') %>
+  </head>
+
+  <body>
+    <div class="ui borderless huge blue inverted menu">
+      <%= link_to "Nemmy", root_path, class:"item" %>
+        <div class="right menu">
+          <%= link_to "ホーム", jobs_path, class:"item" %>
+          
+          <% if candidate_signed_in? %>
+            <%= link_to "チャット", chats_path, class:"item" %>
+            <a class="item">スカウト管理</a>
+            <%= link_to "プロフィール編集", edit_candidate_registration_path, class:"item" %>
+            <a class="item">お問合せ</a>
+            <%= link_to "ログアウト", destroy_candidate_session_path, class:"item" %>
+          
+          <% elsif corporation_signed_in? %>
+            <%= link_to "ホーム", jobs_path, class:"item" %>
+            <%= link_to "チャット", chats_path, class:"item" %>
+            <a class="item">求職者一覧</a>
+            <a class="item">応募者管理</a>
+            <%= link_to "プロフィール編集", edit_corporation_registration_path, class:"item" %>
+            <a class="item">お問合せ</a>
+            <%= link_to "ログアウト", destroy_corporation_session_path, class:"item" %>
+          
+          <% else %>
+            <a class="item">お問合せ</a>
+            <%= link_to "求職者の方", new_candidate_session_path, class:"item" %>
+            <%= link_to "採用担当の方", new_corporation_session_path, class:"item" %>
+            
+          <% end %>
+        
+        </div>
+    </div>
+    <%= yield %>
+    <p>&copy;Nemmy</p>
+  </body>
+</html>
